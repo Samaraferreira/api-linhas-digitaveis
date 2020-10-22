@@ -1,4 +1,4 @@
-const { cleanLine, verifyBoletoType } = require('../services/cleanLine');
+const { cleanLine, getBoletoType } = require('../services/clearLine');
 const bankTitles = require('../services/bankTitles');
 const dealership = require('../services/dealership');
 
@@ -7,20 +7,13 @@ module.exports = {
     const { line } = request.params;
 
     try {
-      const boletoCode = cleanLine(line); // limpar
+      const boletoCode = cleanLine(line);
 
       if (isNaN(Number(boletoCode))) {
-        // verify number
         throw new Error('Linha inválida: não contém apenas números');
       }
 
-      const boletoType = verifyBoletoType(boletoCode); // boleto type
-
-      if (!boletoType) {
-        throw new Error(
-          'Linha inválida: não possui quantidade de números válida',
-        );
-      }
+      const boletoType = getBoletoType(boletoCode);
 
       let boletoChecked = null;
 
@@ -32,7 +25,7 @@ module.exports = {
           boletoChecked = await dealership.check(boletoCode);
           return response.status(200).json(boletoChecked);
         default:
-          response.status(400).json({ message: 'A linha digita é inválida' });
+          throw new Error('A linha digitada é inválida');
       }
     } catch (err) {
       return response.status(400).json(err.message);

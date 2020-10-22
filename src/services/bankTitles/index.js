@@ -12,16 +12,15 @@ module.exports = {
     const digitTwo = Number(code[20]);
     const fieldThree = code.substring(21, 31);
     const digitThree = Number(code[31]);
-
-    const dv = Number(code[32]);
     const expirationFactor = Number(code.substring(33, 37));
+    const dv = Number(code[32]);
 
     await validations.verifyBanckCode(codeBank);
 
     const currency = Number(code[3]); // currency
 
     if (currency !== 9) {
-      throw new Error('Linha inválida: Código da moeda é inválido');
+      throw new Error('Código da moeda é inválido');
     }
 
     verifyModule10.verify(fieldOne, digitOne);
@@ -32,11 +31,8 @@ module.exports = {
 
     const amount = Number(code.substring(37, 47) / 100).toFixed(2);
 
-    // date + amount
-    const field = code.substr(33);
-
-    const sufix = fieldOne.substr(4) + fieldTwo + fieldThree;
-
+    const sufix = fieldOne.substring(4) + fieldTwo + fieldThree;
+    const field = code.substring(33);
     const block = codeBank + currency + field + sufix;
 
     const digitCheck = await verifyModule11.verify(block, dv);

@@ -2,8 +2,8 @@ const express = require('express');
 
 const routes = express.Router();
 
-const LineControllers = require('./controllers/LineControllers');
+const LineController = require('./controllers/LineController');
 
-routes.get('/boleto/:line', LineControllers.index);
+routes.get('/boleto/:line', LineController.index);
 
 module.exports = routes;

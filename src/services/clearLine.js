@@ -2,15 +2,15 @@ const cleanLine = line => {
   return line.replace(/( |-|\.)/g, '');
 };
 
-const verifyBoletoType = line => {
+const getBoletoType = line => {
   switch (line.length) {
     case 47:
       return 'titulo';
     case 48:
       return 'ficha';
     default:
-      return null;
+      throw new Error('Linha não possui quantidade de números válida');
   }
 };
 
-module.exports = { cleanLine, verifyBoletoType };
+module.exports = { cleanLine, getBoletoType };
