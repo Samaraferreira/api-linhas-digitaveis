@@ -1,4 +1,4 @@
-const { cleanLine, getBoletoType } = require('../services/clearLine');
+const { clearLine, getBoletoType } = require('../services/clearLine');
 const bankTitles = require('../services/bankTitles');
 const dealership = require('../services/dealership');
 
@@ -7,7 +7,7 @@ module.exports = {
     const { line } = request.params;
 
     try {
-      const boletoCode = cleanLine(line);
+      const boletoCode = clearLine(line);
 
       if (isNaN(Number(boletoCode))) {
         throw new Error('Linha inválida: não contém apenas números');

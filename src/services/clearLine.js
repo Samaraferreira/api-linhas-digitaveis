@@ -1,4 +1,4 @@
-const cleanLine = line => {
+const clearLine = line => {
   return line.replace(/( |-|\.)/g, '');
 };
 
@@ -13,4 +13,4 @@ const getBoletoType = line => {
   }
 };
 
-module.exports = { cleanLine, getBoletoType };
+module.exports = { clearLine, getBoletoType };
