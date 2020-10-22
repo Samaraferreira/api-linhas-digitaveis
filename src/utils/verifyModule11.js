@@ -14,10 +14,16 @@ function verify(field, digit) {
     ++seq;
   }
 
-  let digitCheck = 11 - (sum % 11);
+  const rest = sum % 11;
 
-  if (digitCheck === 0 || digitCheck === 10 || digitCheck === 11) {
+  let digitCheck;
+
+  if (rest === 0 || rest === 1) {
+    digitCheck = 0;
+  } else if (rest === 10) {
     digitCheck = 1;
+  } else {
+    digitCheck = 11 - rest;
   }
 
   if (digitCheck !== digit) {

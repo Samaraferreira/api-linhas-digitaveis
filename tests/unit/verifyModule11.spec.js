@@ -5,7 +5,6 @@ describe('Verify module 11', () => {
     const block = '0339843800000656209197794600990100153490104';
     const digit = 5;
 
-    // expect(verifyModule11.verify(block, digit)).toBeTruthy();
     expect(verifyModule11.verify(block, digit)).toBe(5);
   });
 
