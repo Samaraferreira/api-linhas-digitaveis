@@ -5,7 +5,12 @@
 ```bash
 $ git clone https://github.com/Samaraferreira/api-linhas-digitaveis && cd api-linhas-digitaveis
 
-$ yarn install
+$ npm install or yarn
 
-$ yarn dev or yarn start
+$ npm start or yarn start
+
+$ npm run test or yarn test
+
+$ GET: http://localhost:8080/boleto/:linha
+  GET: http://localhost:8080/boleto/03399.19771 94600.990108 01534.901044 5 84380000065620
 ```
